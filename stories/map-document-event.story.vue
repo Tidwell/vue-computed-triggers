@@ -39,7 +39,7 @@
         <h2>&lt;script&gt;</h2>
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapDocumentEventTrigger, mapComputedTrigger } from '@/index.js';
+          import { mapDocumentEventTrigger, mapComputedTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [
@@ -63,7 +63,7 @@
 
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapTrigger, mapComputedTrigger } from '@/index.js';
+          import { mapTrigger, mapComputedTrigger } from 'vue-computed-triggers';
           export default {
             mixins: [
               mapTrigger('document.selectionchange', (updateComputed) => {

@@ -35,7 +35,7 @@
         <h2>&lt;script&gt;</h2>
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapWindowEventTrigger, mapComputedTrigger } from '@/index.js';
+          import { mapWindowEventTrigger, mapComputedTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [

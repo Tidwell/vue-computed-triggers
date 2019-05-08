@@ -38,7 +38,7 @@
         <prism language="javascript">
           window.someGlobalVariable = 1;
 
-          import { mapComputedTrigger, mapTrigger } from '@/index.js';
+          import { mapComputedTrigger, mapTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [

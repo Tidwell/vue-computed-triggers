@@ -56,7 +56,7 @@
         <h2>&lt;script&gt;</h2>
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapDocumentEventTrigger, mapComputedTrigger } from '@/index.js';
+          import { mapDocumentEventTrigger, mapComputedTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [

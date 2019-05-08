@@ -30,7 +30,7 @@
         <h2>&lt;script&gt;</h2>
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapComputedTrigger, mapTrigger } from '@/index.js';
+          import { mapComputedTrigger, mapTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [
