@@ -1,0 +1,44 @@
+<html>
+  <head>
+  </head>
+  <body>
+    
+    <div id="container">
+      <div class="some-component-class">
+        width: {{ winWidth }}
+        <br />
+        otherProp {{ myProp }}
+      </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script>
+      
+      new Vue({
+        el: '#container',
+        data: {
+          winWidth: '',
+          myOtherProp: 0
+        },
+        computed: {
+          myProp() {
+            //comment out the next line to break the computed
+            this.winWidth;
+            return window.outerWidth > 1200 ? 'wide' : 'small';
+          }
+        },
+        mounted() {
+          window.addEventListener('resize', this.onResize.bind(this))
+          this.onResize();
+        },
+        methods: {
+          onResize() {
+            this.winWidth = window.outerWidth;
+          }
+        }
+      });
+      
+    </script>
+    
+  </body>
+</html>

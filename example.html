@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <style>
+      body, #container {
+        background: white;
+        color: black;
+        padding-top: 100px;
+        min-height: 120%;
+      }
+      .scrollable-element {
+        max-height: 100px;
+        overflow-y: scroll;
+        border: 1px solid;
+      }
+      .scrollable-element > div {
+        height: 400px;
+        background: red;
+        margin: 1em;
+      }
+    </style>
+  </head>
+  <body> 
+    <div id="container">
+      <div>
+        widow is: {{ isSmallOrWide }}
+        <br />
+        window aspect ratio is: {{ aspectRatio }}
+        <br />
+        widow scroll is: {{ isDownThePage }}
+        <br />
+        Fullscreen Status: {{ isFullscreen ? 'Fullscreen' : 'Not Fullscreen' }}
+        <br />
+        <button @click="isFullscreen ? isFullscreen = false : isFullscreen = true;">
+          {{ isFullscreen ? 'Exit fullscreen' : 'Go fullscreen' }}
+        </button>
+        <br />
+        Element is scrolled by: {{ scrollableElementPosition }}
+        <div class="scrollable-element"><div></div></div>
+      </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script type="module">
+      import {
+        mapComputedTrigger,
+        mapTrigger,
+        mapWindowEventTrigger,
+        mapDocumentEventTrigger,
+        mapElementEventTrigger
+      } from './computed-triggers.js';
+
+      new Vue({
+        mixins: [
+          mapTrigger('mywinresize', (updateComputed) => {
+            window.addEventListener('resize', updateComputed);
+          }),
+          mapDocumentEventTrigger('fullscreenchange'),
+          mapWindowEventTrigger('scroll'),
+          mapElementEventTrigger({
+            element() { //cannot be passed as arrow fn
+              return this.scrollableElement
+            },
+            event: 'scroll',
+            triggerName: 'scrollelement.scroll'
+          })
+        ],
+        mounted() {
+          this.scrollableElement = this.$el.querySelector('.scrollable-element');
+        },
+        el: '#container',
+        data: {},
+        computed: {
+          ...mapComputedTrigger('mywinresize', {
+            isSmallOrWide() {
+              return window.innerWidth > 1200 ? 'wide' : 'small';
+            },
+            aspectRatio() {
+              return window.innerWidth / window.innerHeight;
+            }
+          }),
+          ...mapComputedTrigger('document.fullscreenchange', {
+            isFullscreen: {
+              get() {
+                return !!document.fullscreenElement;
+              },
+              set(newVal) {
+                if (newVal) {
+                  document.body.requestFullscreen();
+                } else {
+                  document.exitFullscreen();
+                }
+              }
+            }
+          }),
+          ...mapComputedTrigger('window.scroll', {
+            isDownThePage() {
+              return window.scrollY > 20 ? 'isDownThePage' : 'isAtThetop';
+            }
+          }),
+          ...mapComputedTrigger('scrollelement.scroll', {
+            scrollableElementPosition() {
+              if (!this.scrollableElement) { return 0; }
+              return this.scrollableElement.scrollTop;
+            }
+          })
+        }
+      });
+    </script>
+    
+  </body>
+</html>
