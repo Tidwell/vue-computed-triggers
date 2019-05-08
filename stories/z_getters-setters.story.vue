@@ -19,7 +19,7 @@
           properties.
         </p>
         <p>
-          This example uses mapDocumentEventTrigger, but all mapTrigger methods
+          This example uses <prism inline>mapDocumentEventTrigger</prism>, but all mapTrigger methods
           accept get and set properties, just like normal computeds.
         </p>
 

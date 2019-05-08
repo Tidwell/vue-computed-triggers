@@ -22,7 +22,7 @@
 
         <h2>Example</h2>
         <div>
-          window.someGlobalVariable gets updated on a timer: {{ someGlobalVariable }}
+          <prism inline>window.someGlobalVariable</prism> gets updated on a timer: {{ someGlobalVariable }}
         </div>
 
         

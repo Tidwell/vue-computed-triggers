@@ -16,7 +16,7 @@ module.exports = async ({ config, mode }) => {
   config.resolve.alias['@'] = path.resolve(__dirname, '../src');
 
   //keep this for use in debugging
-  console.dir(config, { depth: null }) || config;
+  //console.dir(config, { depth: null }) || config;
 
   // Return the altered config
   return config;

@@ -13,7 +13,7 @@
     <section class="section">
       <div class="container content">
         <p>
-          mapWindowEventTrigger is a convenience helper for automatically mapping
+          <prism inline>mapWindowEventTrigger</prism> is a convenience helper for automatically mapping
           to any event that is fired on the window.
         </p>
 
@@ -49,7 +49,7 @@
         </prism>
 
         <p>
-          You could replicate this same behavior using mapTrigger, the helper
+          You could replicate this same behavior using <prism inline>mapTrigger</prism>, the helper
           just saves you from having to manually hook up the trigger.
         </p>
         

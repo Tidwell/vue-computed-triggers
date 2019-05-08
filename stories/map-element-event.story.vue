@@ -13,7 +13,7 @@
     <section class="section">
       <div class="container content">
         <p>
-          mapElementEventTrigger is a convenience method for attaching to
+          <prism inline>mapElementEventTrigger</prism> is a convenience method for attaching to
           events fired by arbitrary DOM elements.
         </p>
 
