@@ -23,15 +23,15 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
-          The window scroll position is: {{ openVar }} isDownThePage
-          {{ closeVar }}
+          The window scroll position is: {{ openVar }} isDownThePage {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>
         <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapWindowEventTrigger, mapComputedTrigger } from '@/index.js';
+          import { mapWindowEventTrigger, mapComputedTrigger } from 'vue-computed-triggers';
 
           export default {
             mixins: [
@@ -55,12 +55,23 @@
           having to manually hook up the trigger.
         </p>
 
+        <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapTrigger, mapComputedTrigger } from '@/index.js'; export
-          default { mixins: [ mapTrigger('window.scroll', (updateComputed) => {
-          window.addEventListener('scroll', updateComputed); }) ], computed: {
-          ...mapComputedTrigger('window.scroll', { isDownThePage() { return
-          window.scrollY > 50 ? 'down the page' : 'at the top'; } }) } };
+          import { mapTrigger, mapComputedTrigger } from 'vue-computed-triggers';
+          export default {
+            mixins: [
+              mapTrigger('window.scroll', (updateComputed) => {
+                window.addEventListener('scroll', updateComputed);
+              })
+            ],
+            computed: {
+              ...mapComputedTrigger('window.scroll', {
+                isDownThePage() {
+                  return window.scrollY > 50 ? 'down the page' : 'at the top';
+                }
+              })
+            }
+          };
         </prism>
       </div>
     </section>

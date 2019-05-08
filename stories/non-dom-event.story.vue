@@ -27,6 +27,7 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
           window.someGlobalVariable gets updated on a timer:
           {{ openVar }} someGlobalVariable {{ closeVar }}

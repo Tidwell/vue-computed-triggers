@@ -25,9 +25,11 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
-          The widow is: {{ openVar }} isSmallOrWide {{ closeVar }} &lt;br /&gt;
-          The window aspect ratio is: {{ openVar }} aspectRatio {{ closeVar }}
+            The widow is: {{ openVar }} isSmallOrWide {{ closeVar }}
+          &lt;br /&gt;
+            The window aspect ratio is: {{ openVar }} aspectRatio {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>

@@ -26,10 +26,14 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
-          &lt;div&gt; The text that is currently selected on the page is: &lt;br
-          /&gt; &lt;strong&gt;{{ openVar }} currentlySelected
-          {{ closeVar }}&lt;/strong&gt; &lt;br /&gt; &lt;/div&gt;
+          &lt;div&gt;
+              The text that is currently selected on the page is:
+            &lt;br /&gt;
+            &lt;strong&gt;{{ openVar }} currentlySelected {{ closeVar }}&lt;/strong&gt;
+            &lt;br /&gt;
+          &lt;/div&gt;
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -57,13 +61,23 @@
           having to manually hook up the trigger.
         </p>
 
+        <!-- prettier-ignore -->
         <prism language="javascript">
-          import { mapTrigger, mapComputedTrigger } from '@/index.js'; export
-          default { mixins: [ mapTrigger('document.selectionchange',
-          (updateComputed) => { document.addEventListener('selectionchange',
-          updateComputed); }) ], computed: {
-          ...mapComputedTrigger('document.selectionchange', {
-          currentlySelected() { return document.getSelection(); } }) } };
+          import { mapTrigger, mapComputedTrigger } from '@/index.js';
+          export default {
+            mixins: [
+              mapTrigger('document.selectionchange', (updateComputed) => {
+                document.addEventListener('selectionchange', updateComputed);
+              })
+            ],
+            computed: {
+              ...mapComputedTrigger('document.selectionchange', {
+                currentlySelected() {
+                  return document.getSelection();
+                }
+              })
+            }
+          };
         </prism>
       </div>
     </section>

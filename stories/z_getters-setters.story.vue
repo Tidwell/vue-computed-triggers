@@ -41,14 +41,16 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
-          &lt;div&gt; &lt;p&gt; Fullscreen Status: {{ openVar }} isFullscreen ?
-          'Fullscreen' : 'Not Fullscreen' {{ closeVar }}
-          &lt;/p&gt; &lt;button class="button" @click="isFullscreen ?
-          isFullscreen = false : isFullscreen = true;"&gt;
-          {{ openVar }} isFullscreen ? 'Exit fullscreen' : 'Go fullscreen'
-          {{ closeVar }}
-          &lt;/button&gt; &lt;/div&gt;
+          &lt;div&gt;
+            &lt;p&gt;
+                Fullscreen Status: {{ openVar }} isFullscreen ? 'Fullscreen' : 'Not Fullscreen' {{ closeVar }}
+            &lt;/p&gt;
+            &lt;button class="button" @click="isFullscreen ? isFullscreen = false : isFullscreen = true;"&gt;
+                {{ openVar }} isFullscreen ? 'Exit fullscreen' : 'Go fullscreen' {{ closeVar }}
+            &lt;/button&gt;
+          &lt;/div&gt;
         </prism>
 
         <h2>&lt;script&gt;</h2>

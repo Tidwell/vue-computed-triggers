@@ -26,10 +26,12 @@
         </div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
-          Element is scrolled by: {{ openVar }} scrollableElementPosition
-          {{ closeVar }}
-          &lt;div class="scrollable-element"&gt; &lt;div /&gt; &lt;/div&gt;
+             Element is scrolled by: {{ openVar }} scrollableElementPosition {{ closeVar }}
+          &lt;div class="scrollable-element"&gt;
+            &lt;div /&gt;
+          &lt;/div&gt;
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -70,10 +72,18 @@
         </prism>
 
         <h2>&lt;style&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="css">
-          .scrollable-element { max-height: 100px; overflow-y: scroll; border:
-          1px solid; } .scrollable-element > div { height: 400px; background:
-          red; margin: 1em; }
+          .scrollable-element {
+            max-height: 100px;
+            overflow-y: scroll;
+            border: 1px solid;
+          }
+          .scrollable-element > div {
+            height: 400px;
+            background: red;
+            margin: 1em;
+          }
         </prism>
       </div>
     </section>

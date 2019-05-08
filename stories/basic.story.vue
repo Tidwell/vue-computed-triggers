@@ -22,6 +22,7 @@
         <div>The window width is: {{ windowWidth }}</div>
 
         <h2>&lt;template&gt;</h2>
+        <!-- prettier-ignore -->
         <prism language="html">
           The window width is: {{ openVar }} windowWidth {{ closeVar }}
         </prism>
