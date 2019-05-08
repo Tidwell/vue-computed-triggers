@@ -14,41 +14,41 @@
       <div class="container content">
         <p>
           You can define getters and setters for a computed, just as you would
-          with non-evented computed properties.  By having setters call methods
+          with non-evented computed properties. By having setters call methods
           that, in turn, fire events, you can get very expressive computed
           properties.
         </p>
         <p>
-          This example uses <prism inline>mapDocumentEventTrigger</prism>, but all mapTrigger methods
-          accept get and set properties, just like normal computeds.
+          This example uses <prism inline>mapDocumentEventTrigger</prism>, but
+          all mapTrigger methods accept get and set properties, just like normal
+          computeds.
         </p>
 
         <h2>Example</h2>
         <div>
           <p>
-            Fullscreen Status: {{ isFullscreen ? 'Fullscreen' : 'Not Fullscreen' }}
+            Fullscreen Status:
+            {{ isFullscreen ? 'Fullscreen' : 'Not Fullscreen' }}
           </p>
           <button
             class="button"
-            @click="isFullscreen ? isFullscreen = false : isFullscreen = true;">
-            
+            @click="
+              isFullscreen ? (isFullscreen = false) : (isFullscreen = true)
+            "
+          >
             {{ isFullscreen ? 'Exit fullscreen' : 'Go fullscreen' }}
-          
           </button>
         </div>
 
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-          &lt;div&gt;
-            &lt;p&gt;
-                Fullscreen Status: {{openVar}} isFullscreen ? 'Fullscreen' : 'Not Fullscreen' {{closeVar}}
-            &lt;/p&gt;
-            &lt;button
-              class="button"
-              @click="isFullscreen ? isFullscreen = false : isFullscreen = true;"&gt;
-                {{openVar}} isFullscreen ? 'Exit fullscreen' : 'Go fullscreen' {{closeVar}}
-            &lt;/button&gt;
-          &lt;/div&gt;
+          &lt;div&gt; &lt;p&gt; Fullscreen Status: {{ openVar }} isFullscreen ?
+          'Fullscreen' : 'Not Fullscreen' {{ closeVar }}
+          &lt;/p&gt; &lt;button class="button" @click="isFullscreen ?
+          isFullscreen = false : isFullscreen = true;"&gt;
+          {{ openVar }} isFullscreen ? 'Exit fullscreen' : 'Go fullscreen'
+          {{ closeVar }}
+          &lt;/button&gt; &lt;/div&gt;
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -86,32 +86,29 @@
 </template>
 
 <script>
-  import { mapDocumentEventTrigger, mapComputedTrigger } from '@/index.js';
+import { mapDocumentEventTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapDocumentEventTrigger('fullscreenchange')
-    ],
-    computed: {
-      ...mapComputedTrigger('document.fullscreenchange', {
-        isFullscreen: {
-          get() {
-            return !!document.fullscreenElement;
-          },
-          set(newVal) {
-            if (newVal) {
-              document.body.requestFullscreen();
-            } else {
-              document.exitFullscreen();
-            }
+export default {
+  mixins: [mapDocumentEventTrigger('fullscreenchange')],
+  computed: {
+    ...mapComputedTrigger('document.fullscreenchange', {
+      isFullscreen: {
+        get() {
+          return !!document.fullscreenElement;
+        },
+        set(newVal) {
+          if (newVal) {
+            document.body.requestFullscreen();
+          } else {
+            document.exitFullscreen();
           }
         }
-      })
-    },
-    storyOf: 'Advanced Usage',
-    storyDescription: 'Computed Getters & Setters'
-  };
+      }
+    })
+  },
+  storyOf: 'Advanced Usage',
+  storyDescription: 'Computed Getters & Setters'
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

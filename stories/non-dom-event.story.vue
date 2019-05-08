@@ -13,8 +13,8 @@
     <section class="section">
       <div class="container content">
         <p>
-          You may have a 3rd party script that fires an event, and updates its own
-          global state.  This is especially common with ads or analytics.
+          You may have a 3rd party script that fires an event, and updates its
+          own global state. This is especially common with ads or analytics.
         </p>
         <p>
           This example simulates the arbitrary events by firing on a timer.
@@ -22,13 +22,14 @@
 
         <h2>Example</h2>
         <div>
-          <prism inline>window.someGlobalVariable</prism> gets updated on a timer: {{ someGlobalVariable }}
+          <prism inline>window.someGlobalVariable</prism> gets updated on a
+          timer: {{ someGlobalVariable }}
         </div>
 
-        
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-          window.someGlobalVariable gets updated on a timer: {{openVar}} someGlobalVariable {{closeVar}}
+          window.someGlobalVariable gets updated on a timer:
+          {{ openVar }} someGlobalVariable {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -64,33 +65,29 @@
 </template>
 
 <script>
-  window.someGlobalVariable = 1;
+window.someGlobalVariable = 1;
 
-  import {
-    mapTrigger,
-    mapComputedTrigger
-  } from '@/index.js';
+import { mapTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapTrigger('mycustomtrigger', (updateComputed) => {
-        setInterval(() => {
-          window.someGlobalVariable += 1;
-          updateComputed();
-        }, 500);
-      })
-    ],
-    computed: {
-      ...mapComputedTrigger('mycustomtrigger', {
-        someGlobalVariable() {
-          return window.someGlobalVariable;
-        }
-      }),
-    },
-    storyOf: 'mapTrigger',
-    storyDescription: 'Non-DOM event'
-  };
+export default {
+  mixins: [
+    mapTrigger('mycustomtrigger', updateComputed => {
+      setInterval(() => {
+        window.someGlobalVariable += 1;
+        updateComputed();
+      }, 500);
+    })
+  ],
+  computed: {
+    ...mapComputedTrigger('mycustomtrigger', {
+      someGlobalVariable() {
+        return window.someGlobalVariable;
+      }
+    })
+  },
+  storyOf: 'mapTrigger',
+  storyDescription: 'Non-DOM event'
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -13,8 +13,8 @@
     <section class="section">
       <div class="container content">
         <p>
-          You can have multiple computed properties respond to the same
-          event trigger.
+          You can have multiple computed properties respond to the same event
+          trigger.
         </p>
 
         <h2>Example</h2>
@@ -26,9 +26,8 @@
 
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-            The widow is: {{openVar}} isSmallOrWide {{closeVar}}
-          &lt;br /&gt;
-            The window aspect ratio is: {{openVar}} aspectRatio {{closeVar}}
+          The widow is: {{ openVar }} isSmallOrWide {{ closeVar }} &lt;br /&gt;
+          The window aspect ratio is: {{ openVar }} aspectRatio {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -58,29 +57,23 @@
 </template>
 
 <script>
-  import {
-    mapWindowEventTrigger,
-    mapComputedTrigger
-  } from '@/index.js';
+import { mapWindowEventTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapWindowEventTrigger('resize')
-    ],
-    computed: {
-      ...mapComputedTrigger('window.resize', {
-        isSmallOrWide() {
-          return window.innerWidth > 1200 ? 'wide' : 'small';
-        },
-        aspectRatio() {
-          return window.innerWidth / window.innerHeight;
-        }
-      })
-    },
-    storyOf: 'Advanced Usage',
-    storyDescription: 'Multiple Computeds'
-  };
+export default {
+  mixins: [mapWindowEventTrigger('resize')],
+  computed: {
+    ...mapComputedTrigger('window.resize', {
+      isSmallOrWide() {
+        return window.innerWidth > 1200 ? 'wide' : 'small';
+      },
+      aspectRatio() {
+        return window.innerWidth / window.innerHeight;
+      }
+    })
+  },
+  storyOf: 'Advanced Usage',
+  storyDescription: 'Multiple Computeds'
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

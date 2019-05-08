@@ -13,19 +13,17 @@
     <section class="section">
       <div class="container content">
         <p>
-          You can define a trigger based on any kind of event as long as you
-          can fire a method when it occurs.  This shows a basic example binding
-          to a window resize event.
+          You can define a trigger based on any kind of event as long as you can
+          fire a method when it occurs. This shows a basic example binding to a
+          window resize event.
         </p>
 
         <h2>Example</h2>
-        <div>
-          The window width is: {{ windowWidth }}
-        </div>
+        <div>The window width is: {{ windowWidth }}</div>
 
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-          The window width is: {{openVar}} windowWidth {{closeVar}}
+          The window width is: {{ openVar }} windowWidth {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -58,28 +56,24 @@
 </template>
 
 <script>
-  import {
-    mapTrigger,
-    mapComputedTrigger
-  } from '@/index.js';
+import { mapTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapTrigger('mycustomtrigger', (updateComputed) => {
-        window.addEventListener('resize', updateComputed);
-      })
-    ],
-    computed: {
-      ...mapComputedTrigger('mycustomtrigger', {
-        windowWidth() {
-          return window.innerWidth;
-        }
-      }),
-    },
-    storyOf: 'mapTrigger',
-    storyDescription: 'Basic Example'
-  };
+export default {
+  mixins: [
+    mapTrigger('mycustomtrigger', updateComputed => {
+      window.addEventListener('resize', updateComputed);
+    })
+  ],
+  computed: {
+    ...mapComputedTrigger('mycustomtrigger', {
+      windowWidth() {
+        return window.innerWidth;
+      }
+    })
+  },
+  storyOf: 'mapTrigger',
+  storyDescription: 'Basic Example'
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

@@ -13,8 +13,8 @@
     <section class="section">
       <div class="container content">
         <p>
-          <prism inline>mapElementEventTrigger</prism> is a convenience method for attaching to
-          events fired by arbitrary DOM elements.
+          <prism inline>mapElementEventTrigger</prism> is a convenience method
+          for attaching to events fired by arbitrary DOM elements.
         </p>
 
         <h2>Example</h2>
@@ -27,10 +27,9 @@
 
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-            Element is scrolled by: {{openVar}} scrollableElementPosition {{closeVar}}
-          &lt;div class="scrollable-element"&gt;
-            &lt;div /&gt;
-          &lt;/div&gt;
+          Element is scrolled by: {{ openVar }} scrollableElementPosition
+          {{ closeVar }}
+          &lt;div class="scrollable-element"&gt; &lt;div /&gt; &lt;/div&gt;
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -72,16 +71,9 @@
 
         <h2>&lt;style&gt;</h2>
         <prism language="css">
-          .scrollable-element {
-            max-height: 100px;
-            overflow-y: scroll;
-            border: 1px solid;
-          }
-          .scrollable-element > div {
-            height: 400px;
-            background: red;
-            margin: 1em;
-          }
+          .scrollable-element { max-height: 100px; overflow-y: scroll; border:
+          1px solid; } .scrollable-element > div { height: 400px; background:
+          red; margin: 1em; }
         </prism>
       </div>
     </section>
@@ -89,43 +81,45 @@
 </template>
 
 <script>
-  import { mapElementEventTrigger, mapComputedTrigger } from '@/index.js';
+import { mapElementEventTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapElementEventTrigger({
-        element() {
-          return this.scrollableElement
-        },
-        event: 'scroll',
-        triggerName: 'myscrollelement.scroll'
-      })
-    ],
-    mounted() {
-      this.scrollableElement = this.$el.querySelector('.scrollable-element');
-    },
-    computed: {
-      ...mapComputedTrigger('myscrollelement.scroll', {
-        scrollableElementPosition() {
-          if (!this.scrollableElement) { return 0; }
-          return this.scrollableElement.scrollTop;
+export default {
+  mixins: [
+    mapElementEventTrigger({
+      element() {
+        return this.scrollableElement;
+      },
+      event: 'scroll',
+      triggerName: 'myscrollelement.scroll'
+    })
+  ],
+  mounted() {
+    this.scrollableElement = this.$el.querySelector('.scrollable-element');
+  },
+  computed: {
+    ...mapComputedTrigger('myscrollelement.scroll', {
+      scrollableElementPosition() {
+        if (!this.scrollableElement) {
+          return 0;
         }
-      })
-    },
-    storyOf: 'mapElementEventTrigger',
-    storyDescription: 'Element DOM Events'
-  };
+        return this.scrollableElement.scrollTop;
+      }
+    })
+  },
+  storyOf: 'mapElementEventTrigger',
+  storyDescription: 'Element DOM Events'
+};
 </script>
 
 <style lang="scss" scoped>
-  .scrollable-element {
-    max-height: 100px;
-    overflow-y: scroll;
-    border: 1px solid;
-  }
-  .scrollable-element > div {
-    height: 400px;
-    background: red;
-    margin: 1em;
-  }
+.scrollable-element {
+  max-height: 100px;
+  overflow-y: scroll;
+  border: 1px solid;
+}
+.scrollable-element > div {
+  height: 400px;
+  background: red;
+  margin: 1em;
+}
 </style>

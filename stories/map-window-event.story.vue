@@ -13,8 +13,8 @@
     <section class="section">
       <div class="container content">
         <p>
-          <prism inline>mapWindowEventTrigger</prism> is a convenience helper for automatically mapping
-          to any event that is fired on the window.
+          <prism inline>mapWindowEventTrigger</prism> is a convenience helper
+          for automatically mapping to any event that is fired on the window.
         </p>
 
         <h2>Example</h2>
@@ -24,7 +24,8 @@
 
         <h2>&lt;template&gt;</h2>
         <prism language="html">
-          The window scroll position is: {{openVar}} isDownThePage {{closeVar}}
+          The window scroll position is: {{ openVar }} isDownThePage
+          {{ closeVar }}
         </prism>
 
         <h2>&lt;script&gt;</h2>
@@ -49,27 +50,17 @@
         </prism>
 
         <p>
-          You could replicate this same behavior using <prism inline>mapTrigger</prism>, the helper
-          just saves you from having to manually hook up the trigger.
+          You could replicate this same behavior using
+          <prism inline>mapTrigger</prism>, the helper just saves you from
+          having to manually hook up the trigger.
         </p>
-        
-        <prism language="javascript">
-          import { mapTrigger, mapComputedTrigger } from '@/index.js';
 
-          export default {
-            mixins: [
-              mapTrigger('window.scroll', (updateComputed) => {
-                window.addEventListener('scroll', updateComputed);
-              })
-            ],
-            computed: {
-              ...mapComputedTrigger('window.scroll', {
-                isDownThePage() {
-                  return window.scrollY > 50 ? 'down the page' : 'at the top';
-                }
-              })
-            }
-          };
+        <prism language="javascript">
+          import { mapTrigger, mapComputedTrigger } from '@/index.js'; export
+          default { mixins: [ mapTrigger('window.scroll', (updateComputed) => {
+          window.addEventListener('scroll', updateComputed); }) ], computed: {
+          ...mapComputedTrigger('window.scroll', { isDownThePage() { return
+          window.scrollY > 50 ? 'down the page' : 'at the top'; } }) } };
         </prism>
       </div>
     </section>
@@ -77,26 +68,20 @@
 </template>
 
 <script>
-  import {
-    mapWindowEventTrigger,
-    mapComputedTrigger
-  } from '@/index.js';
+import { mapWindowEventTrigger, mapComputedTrigger } from '@/index.js';
 
-  export default {
-    mixins: [
-      mapWindowEventTrigger('scroll')
-    ],
-    computed: {
-      ...mapComputedTrigger('window.scroll', {
-        isDownThePage() {
-          return window.scrollY > 50 ? 'down the page' : 'at the top';
-        }
-      })
-    },
-    storyOf: 'mapWindowEventTrigger',
-    storyDescription: 'Window Events'
-  };
+export default {
+  mixins: [mapWindowEventTrigger('scroll')],
+  computed: {
+    ...mapComputedTrigger('window.scroll', {
+      isDownThePage() {
+        return window.scrollY > 50 ? 'down the page' : 'at the top';
+      }
+    })
+  },
+  storyOf: 'mapWindowEventTrigger',
+  storyDescription: 'Window Events'
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
