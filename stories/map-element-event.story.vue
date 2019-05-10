@@ -51,7 +51,7 @@
                 // the event to listen for
                 event: 'scroll',
                 // a custom trigger name for the event
-                triggerName: 'myscrollelement.scroll'
+                name: 'myscrollelement.scroll'
               })
             ],
             mounted() {
@@ -100,7 +100,7 @@ export default {
         return this.scrollableElement;
       },
       event: 'scroll',
-      triggerName: 'myscrollelement.scroll'
+      name: 'myscrollelement.scroll'
     })
   ],
   mounted() {

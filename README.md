@@ -8,7 +8,7 @@ to arbitrary event triggers.  See storybook examples for documentation.
 npm install
 ```
 
-### Storybook
+### Storybook (Docs & Demos)
 ```
 npm run storybook
 ```
@@ -18,7 +18,7 @@ npm run storybook
 npm run build
 ```
 
-### Run your tests
+### Run tests
 ```
 npm run test
 ```
@@ -28,7 +28,7 @@ npm run test
 npm run lint
 ```
 
-### Run your unit tests
+### Run unit tests
 ```
 npm run test:unit
 ```
@@ -37,8 +37,7 @@ npm run test:unit
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 TODO
-* unbind
 * tests
-* multiple events, 1 computed
+* method docgen docs
+* nuxt
 * example where other data and events are used
-* more docs

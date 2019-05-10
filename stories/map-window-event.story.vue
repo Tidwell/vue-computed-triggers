@@ -52,7 +52,7 @@
         <p>
           You could replicate this same behavior using
           <prism inline>mapTrigger</prism>, the helper just saves you from
-          having to manually hook up the trigger.
+          having to manually bind and unbind the triggering event.
         </p>
 
         <!-- prettier-ignore -->
@@ -60,8 +60,15 @@
           import { mapTrigger, mapComputedTrigger } from 'vue-computed-triggers';
           export default {
             mixins: [
-              mapTrigger('window.scroll', (updateComputed) => {
-                window.addEventListener('scroll', updateComputed);
+              mapTrigger({
+                name: 'window.scroll',
+                trigger(updateComputed) {
+                  this.onScrollFn = updateComputed;
+                  window.addEventListener('scroll', this.onScrollFn);
+                },
+                destroy() {
+                  window.removeEventListener('scroll', this.onScrollFn);
+                }
               })
             ],
             computed: {

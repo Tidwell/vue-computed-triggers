@@ -16,6 +16,10 @@
           <prism inline>mapDocumentEventTrigger</prism> is a convenience helper
           for automatically mapping to any event that is fired on the document.
         </p>
+        <p>
+          It automatically handles binding the event listener when the component
+          is created, and also unbinding when the component is destroyed.
+        </p>
 
         <h2>Example</h2>
         <div>
@@ -58,7 +62,7 @@
         <p>
           You could replicate this same behavior using
           <prism inline>mapTrigger</prism>, the helper just saves you from
-          having to manually hook up the trigger.
+          having to manually bind and unbind the triggering event.
         </p>
 
         <!-- prettier-ignore -->
@@ -66,8 +70,15 @@
           import { mapTrigger, mapComputedTrigger } from 'vue-computed-triggers';
           export default {
             mixins: [
-              mapTrigger('document.selectionchange', (updateComputed) => {
-                document.addEventListener('selectionchange', updateComputed);
+              mapTrigger({
+                name: 'document.selectionchange', 
+                trigger(updateComputed) {
+                  this.onSelectionChangeFn = updateComputed;
+                  document.addEventListener('selectionchange', this.onSelectionChangeFn);
+                },
+                destroy() {
+                  document.removeEventListener('selectionchange', this.onSelectionChangeFn);
+                }
               })
             ],
             computed: {

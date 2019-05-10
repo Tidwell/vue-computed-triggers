@@ -1,5 +1,7 @@
 import { configure, storiesOf, addParameters } from '@storybook/vue';
 
+import theme from './theme';
+
 import path from 'path';
 
 import Vue from 'vue';
@@ -31,7 +33,8 @@ Vue.mixin({
 // });
 addParameters({
   options: {
-    showPanel: false
+    showPanel: false,
+    theme
   }
 });
 

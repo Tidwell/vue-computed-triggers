@@ -42,11 +42,17 @@
 
           export default {
             mixins: [
-              mapTrigger('mycustomtrigger', (updateComputed) => {
-                setInterval(() => {
-                  window.someGlobalVariable += 1;
-                  updateComputed();
-                }, 500);
+              mapTrigger({
+                name: 'mycustomtrigger',
+                trigger(updateComputed) {
+                  this.intervalFn = setInterval(() => {
+                    window.someGlobalVariable += 1;
+                    updateComputed();
+                  }, 500);
+                },
+                destroy() {
+                  clearInterval(this.intervalFn);
+                }
               })
             ],
             computed: {
@@ -72,11 +78,17 @@ import { mapTrigger, mapComputedTrigger } from '@/index.js';
 
 export default {
   mixins: [
-    mapTrigger('mycustomtrigger', updateComputed => {
-      setInterval(() => {
-        window.someGlobalVariable += 1;
-        updateComputed();
-      }, 500);
+    mapTrigger({
+      name: 'mycustomtrigger',
+      trigger(updateComputed) {
+        this.intervalFn = setInterval(() => {
+          window.someGlobalVariable += 1;
+          updateComputed();
+        }, 500);
+      },
+      destroy() {
+        clearInterval(this.intervalFn);
+      }
     })
   ],
   computed: {

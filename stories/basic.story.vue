@@ -17,6 +17,11 @@
           fire a method when it occurs. This shows a basic example binding to a
           window resize event.
         </p>
+        <p>
+          Because we are using the basic <prism inline>mapTrigger</prism> method
+          instead of one of the helpers, we will be manually binding and
+          unbinding the event listener for our trigger.
+        </p>
 
         <h2>Example</h2>
         <div>The window width is: {{ windowWidth }}</div>
@@ -34,10 +39,21 @@
 
           export default {
             mixins: [
-              //define your custom trigger with a name
-              mapTrigger('mycustomtrigger', (updateComputed) => {
-                //call updateComputed when it occurs
-                window.addEventListener('resize', updateComputed);
+              mapTrigger({
+                //define your custom trigger with a name
+                name: 'mycustomtrigger',
+                trigger(updateComputed) {
+                  //cache the method because we are binding an event listner
+                  //and we want to make sure we can unbind when the component is destroyed
+                  this.resizeTriggerFn = updateComputed;
+
+                  //call updateComputed when it occurs
+                  window.addEventListener('resize', this.resizeTriggerFn);
+                },
+                destroy() {
+                  //remove the event listener when the component is destroyed
+                  window.removeEventListener('resize', this.resizeTriggerFn);
+                }
               })
             ],
             computed: {
@@ -61,8 +77,15 @@ import { mapTrigger, mapComputedTrigger } from '@/index.js';
 
 export default {
   mixins: [
-    mapTrigger('mycustomtrigger', updateComputed => {
-      window.addEventListener('resize', updateComputed);
+    mapTrigger({
+      name: 'mycustomtrigger',
+      trigger(updateComputed) {
+        this.resizeTriggerFn = updateComputed;
+        window.addEventListener('resize', this.resizeTriggerFn);
+      },
+      destroy() {
+        window.removeEventListener('resize', this.resizeTriggerFn);
+      }
     })
   ],
   computed: {
